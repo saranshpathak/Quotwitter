@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" />
+
+</head>
+<body>
+    <div class="container">
+         <div id="weatherCondition">
+            <i class="fas fa-sun" style="color: eccc68;"></i>
+         </div>
+         <div class="information">
+             <h2 id="location">
+                <i class="fas fa-street-view"></i>
+                {%city%},{%country%}</h2>
+             <p id="date">WED | 05/01/2022 | 11:25 PM</p>
+             <h1 id="temp">{%tempVal%}</h1>
+             <h3 class="min-max-Temp">
+                 Min {%tempMin%}| Max {%tempMax%}
+             </h3>
+         </div>
+    </div>
+
+    <script>
+        const curDate = document.getElementById("date");
+        let weatherStatus = document.getElementById("weatherCondition");
+
+        const tempStatus = "Clouds";
+
+        const weekday = new Array(7);
+        weekday[0]="Sun";
+        weekday[1]="Mon";
+        weekday[2]="Tues";
+        weekday[3]="Wed";
+        weekday[4]="Thu";
+        weekday[5]="Fri";
+        weekday[6]="Sat";
+        const month = new Array(12);
+        month[0]="Jan";
+        month[1] = "Feb";
+        month[2] = "Mar";
+        month[3] = "Apr";
+        month[4] = "May";
+        month[5] = "Jun";
+        month[6] ="Jul";
+        month[7] = "Aug";
+        month[8] = "Sept";
+        month[9] = "Oct";
+        month[10] = "Nov";
+        month[11] = "Dec";
+
+        const getCurrentDate = ()=>{
+            let date = new Date();
+            let day = weekday[date.getDay()];
+            let mth = date.getMonth();
+            let dateM = date.getDate();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+            let perios = "AM";
+            if(hour>11){
+                perios="PM";
+                if(hour>12)hour = hour-12;
+            }
+            if(min<10)min= "0" + min;
+            if(dateM>10) dateM = "0" + dateM;
+
+            return `${day} | ${month[mth]} / ${dateM} | ${hour} : ${min}`;
+        };
+        curDate.innerHTML = getCurrentDate();
+    </script>
+</body>
+</html>
