@@ -4,9 +4,8 @@ var requests = require("requests");
 const homeFile = fs.readFileSync("Home.html","utf-8");
 
 
-const getValue = (temporaryVal,originalVal)=>{
+const getValue = (temporaryVal,original)=>{
   let temp = temporaryVal.replace("{%tempVal%}",original.main.temp);
-  temp = temp.replace("{%tempMin%}",original.main.temp);
   temp = temp.replace("{%tempMin%}",original.main.temp_min);
   temp = temp.replace("{%tempMax%}",original.main.temp_max);
   temp = temp.replace("{%city%}",original.name);
